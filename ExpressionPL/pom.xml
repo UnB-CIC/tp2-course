@@ -1,97 +1,192 @@
 
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>br.unb.cic</groupId>
+  <artifactId>Expression-PL</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  
+  <properties>
+    <java.version>8</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
 
-    <groupId>br.unb.cic</groupId>
-    <artifactId>Expression-PL</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
-    <dependencies>
-      <dependency>
-	<groupId>org.aspectj</groupId>
-	<artifactId>aspectjrt</artifactId>
-	<version>1.8.13</version>
-      </dependency>
-    </dependencies>
-
-<profiles>
-  <profile>
-	<id>all</id>	
-    <build>
+  <dependencies>
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjrt</artifactId>
+      <version>1.8.13</version>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <defaultGoal>clean package</defaultGoal>
+    <plugins>
+      <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-compiler-plugin</artifactId>
+	<version>${maven-compiler-plugin.version}</version>
+	<configuration>
+	  <source>${maven.compiler.source}</source>
+	  <target>${maven.compiler.target}</target>
+	  <encoding>${project.build.sourceEncoding}</encoding>
+	  <debug>false</debug>
+	  <optimize>true</optimize>
+	  <showWarnings>true</showWarnings>
+	  <showDeprecation>true</showDeprecation>
+	</configuration>
+      </plugin>
+      <plugin>
+	<artifactId>maven-assembly-plugin</artifactId>
+	<configuration>
+	  <archive>
+	    <manifest>
+	      <mainClass>br.unb.cic.epl.Main</mainClass>
+	    </manifest>
+	  </archive>
+	  <descriptorRefs>
+	    <descriptorRef>jar-with-dependencies</descriptorRef>
+	  </descriptorRefs>
+	</configuration>
+	<executions>
+	  <execution>
+	    <id>make-assembly</id>
+	    <phase>package</phase>
+	    <goals>
+	      <goal>single</goal>
+	    </goals>
+	  </execution>
+	</executions>
+      </plugin>
+    </plugins>
+    <pluginManagement>
       <plugins>
 	<plugin>
-	  <artifactId>maven-assembly-plugin</artifactId>
+	  <groupId>org.codehaus.mojo</groupId>
+	  <artifactId>aspectj-maven-plugin</artifactId>
+	  <version>1.11</version>
 	  <configuration>
-            <archive>
-              <manifest>
-		<mainClass>br.unb.cic.epl.Main</mainClass>
-              </manifest>
-            </archive>
-            <descriptorRefs>
-              <descriptorRef>jar-with-dependencies</descriptorRef>
-            </descriptorRefs>
+	    <verbose>true</verbose>
+	    <showWeaveInfo>true</showWeaveInfo>
 	  </configuration>
-	</plugin>
-       
-	<plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>aspectj-maven-plugin</artifactId>
-          <version>1.11</version>
-          <executions>
+	  <executions>
 	    <execution>
 	      <goals>
 		<goal>compile</goal>
-		<goal>test-compile</goal>
 	      </goals>
 	    </execution>
 	  </executions>
 	</plugin>
       </plugins>
-    </build>
-  </profile>
-  <profile>
-    <id>base</id>	
-    <build>
-      <plugins>
-	<plugin>
-	  <artifactId>maven-assembly-plugin</artifactId>
-	  <configuration>
-            <archive>
-              <manifest>
-		<mainClass>br.unb.cic.epl.Main</mainClass>
-              </manifest>
-            </archive>
-            <descriptorRefs>
-              <descriptorRef>jar-with-dependencies</descriptorRef>
-            </descriptorRefs>
-	  </configuration>
-	</plugin>
-	<plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>aspectj-maven-plugin</artifactId>
-          <version>1.11</version>
-          <executions>
-	    <execution>
-	      <configuration>
-		<sources>
-		  <source>
-		    <basedir>src/main/java</basedir>
-		    <excludes>
-                      <exclude>/br/unb/cic/epl/features/add/Add.java</exclude>
-		      <exclude>/br/unb/cic/epl/features/eval/Eval.aj</exclude>
-		    </excludes>
-		  </source>
-		</sources>
-	      </configuration>
-	    </execution>
-	  </executions>
-	</plugin>
-      </plugins>
-    </build>
-  </profile>
-</profiles>
-
+    </pluginManagement>
+  </build>
+  
+  <profiles>
+    <profile>
+      <id>all</id>
+      <build>
+	<plugins>
+	  <plugin>
+	    <groupId>org.codehaus.mojo</groupId>
+	    <artifactId>aspectj-maven-plugin</artifactId>
+	    <!-- <version>1.11</version> -->
+	    <executions>
+	      <execution>
+		<goals>
+		  <goal>compile</goal>
+		  <goal>test-compile</goal>
+		</goals>
+	      </execution>
+	    </executions>
+	  </plugin>
+	</plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>base</id>
+      <activation>
+	<activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+	<plugins>
+	  <plugin>
+	    <groupId>org.codehaus.mojo</groupId>
+	    <artifactId>aspectj-maven-plugin</artifactId>
+	    <configuration>
+	      <sources>
+		<source>
+		  <basedir>src/main/java</basedir>
+		  <excludes>
+		   <exclude>/br/unb/cic/epl/features/add/Add.java</exclude> 
+		 </excludes>	  
+		</source>
+		<source>
+		  <basedir>src/main/aspect</basedir>
+		  <excludes>
+		    <exclude>/br/unb/cic/epl/features/eval/Eval.aj</exclude>
+		    <exclude>/br/unb/cic/epl/features/eval/AddEval.aj</exclude>
+		  </excludes>
+		</source>
+	      </sources>
+	    </configuration>
+	  </plugin>
+	</plugins>
+      </build>
+    </profile>
+ <profile>
+      <id>add</id>
+      <activation>
+	<activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+	<plugins>
+	  <plugin>
+	    <groupId>org.codehaus.mojo</groupId>
+	    <artifactId>aspectj-maven-plugin</artifactId>
+	    <configuration>
+	      <sources>
+		<source>
+		  <basedir>src/main/java</basedir>	  
+		</source>
+		<source>
+		  <basedir>src/main/aspect</basedir>
+		  <excludes>
+		    <exclude>/br/unb/cic/epl/features/eval/Eval.aj</exclude>
+		    <exclude>/br/unb/cic/epl/features/eval/AddEval.aj</exclude>
+		  </excludes>
+		</source>
+	      </sources>
+	    </configuration>
+	  </plugin>
+	</plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>addeval</id>
+      <build>
+	<plugins>
+	  <plugin>
+	    <groupId>org.codehaus.mojo</groupId>
+	    <artifactId>aspectj-maven-plugin</artifactId>
+	    <configuration>
+	      <sources>
+		<source>
+		  <basedir>src/main/java</basedir>	  
+		</source>
+		<source>
+		  <basedir>src/main/aspect</basedir>
+		</source>
+	      </sources>
+	    </configuration>
+	  </plugin>
+	</plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
