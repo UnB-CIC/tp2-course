@@ -1,0 +1,13 @@
+package br.unb.cic.epl
+
+package object Eval {
+
+  trait Expression extends Core.Expression {
+    def eval: Integer 
+  }
+
+  trait Literal extends Core.Literal with Expression {
+    def eval(): Integer = value; 
+  }
+
+}

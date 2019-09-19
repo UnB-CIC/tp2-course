@@ -1,0 +1,21 @@
+package br.unb.cic.epl
+
+
+package object Add {
+
+  trait AbstractAdd {
+    type T <: Core.Expression
+
+    // lhs and rhs sao do tipo T, que tem como
+    // base o tipo Core.Expression
+    var lhs: T = _
+    var rhs: T = _
+
+    override def print(): String = "(" + l.print() + "+" + r.print() + ")" 
+  }
+
+  
+
+
+
+}
