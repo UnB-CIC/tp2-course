@@ -28,5 +28,29 @@ class ExpressionTest extends FunSuite {
 
     assert(int7 == sum.eval())
   }
+
+  test("The Expression Add(true, 3) should be invalid") {
+    val t = new BoolValue(true)
+    val i = new IntValue(3)
+
+    val sum = AddExp(t, i)
+
+    assert(t.typeCheck())
+    assert(i.typeCheck())
+    assert(sum.computeType == TError())
+    assert(!sum.typeCheck())
+  }
+
+  test("The expression And(true, 3) should be invalid") {
+    val t = new BoolValue(true)
+    val i = new IntValue(3)
+
+    val and = AndExp(t, i)
+
+    assert(t.typeCheck())
+    assert(i.typeCheck())
+    assert(and.computeType == TError())
+    assert(!and.typeCheck())
+  }
 }
 
