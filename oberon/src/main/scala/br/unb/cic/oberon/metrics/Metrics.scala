@@ -28,7 +28,4 @@ class Metrics() extends Visitor {
     e.lhs.accept(this)
     e.rhs.accept(this) 
   }
-
-
-
 }
