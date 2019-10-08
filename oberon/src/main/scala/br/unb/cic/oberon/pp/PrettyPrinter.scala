@@ -16,6 +16,7 @@ class PrettyPrinter() extends Visitor {
   def visit(v : BoolValue) {
     res = res + v.value.toString
   }
+
   def visit(e : AddExp) {
     res = res + "("
     e.lhs.accept(this)
