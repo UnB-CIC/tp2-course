@@ -23,9 +23,15 @@ class Metrics() extends Visitor {
     e.rhs.accept(this) 
   }
 
- def visit(e : AndExp) {
+  def visit(e : AndExp) {
     res = res + 1
     e.lhs.accept(this)
-    e.rhs.accept(this) 
+    e.rhs.accept(this)
+  }
+
+  def visit(e : LtExp) {
+    res = res + 1
+    e.lhs.accept(this)
+    e.rhs.accept(this)
   }
 }

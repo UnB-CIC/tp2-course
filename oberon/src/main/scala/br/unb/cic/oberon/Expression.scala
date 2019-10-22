@@ -1,8 +1,5 @@
 package br.unb.cic.oberon
 
-import br.unb.cic.oberon.Visitor
-
-
 trait Type
 
 case class TInt() extends Type
@@ -79,6 +76,26 @@ case class AndExp(val lhs: Expression, val rhs: Expression) extends Expression {
 
   def accept(v : Visitor) {
     v.visit(this)
-  }
- 
+  } 
 }
+
+case class LtExp(val lhs: Expression, val rhs: Expression) extends Expression {
+  override def typeCheck() : Boolean = lhs.computeType() == rhs.computeType()
+
+  override def computeType() : Type = if(typeCheck()) TBool() else TError()
+
+  override def eval(): Value = {
+    val l = lhs.eval()
+    val r = rhs.eval()
+
+    if(l.computeType() == TInt() && r.computeType() == TInt()) {
+      return new BoolValue(l.asInstanceOf[IntValue].value < r.asInstanceOf[IntValue].value)
+    }
+    return new BoolValue(l.asInstanceOf[IntValue].value < r.asInstanceOf[IntValue].value)
+  }
+
+  def accept(v : Visitor) {
+    v.visit(this)
+  }
+}
+
