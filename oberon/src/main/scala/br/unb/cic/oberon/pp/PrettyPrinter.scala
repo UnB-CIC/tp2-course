@@ -40,4 +40,8 @@ class PrettyPrinter() extends Visitor {
     e.rhs.accept(this)
     res = res +  ")"
   }
+
+  def visit(e : VarRef) {
+    res = res + e.name
+  }
 }

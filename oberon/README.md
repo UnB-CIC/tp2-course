@@ -33,9 +33,11 @@
 
    * Statement
       * for statement
+      * elif 
       * case statement
+      * do while
 
    * Tasks
       * Compile Oberon programs to LLVM
-      * Desugar: mapping language extensions (e.g., for statement and case statement) to previous language constructs
+      * Desuggar: mapping language extensions (e.g., for statement and case statement) to previous language constructs
 

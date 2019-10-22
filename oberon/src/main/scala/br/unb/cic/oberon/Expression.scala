@@ -99,3 +99,12 @@ case class LtExp(val lhs: Expression, val rhs: Expression) extends Expression {
   }
 }
 
+case class VarRef(val name: String) extends Expression {
+  override def typeCheck() : Boolean = ExecutionContext.lookup(name).typeCheck()
+  override def computeType() : Type = ExecutionContext.lookup(name).computeType()
+  override def eval(): Value = ExecutionContext.lookup(name).eval()
+
+  def accept(v : Visitor) {
+    v.visit(this)
+  }
+}

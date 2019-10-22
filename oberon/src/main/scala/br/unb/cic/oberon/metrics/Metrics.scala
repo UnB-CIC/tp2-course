@@ -34,4 +34,8 @@ class Metrics() extends Visitor {
     e.lhs.accept(this)
     e.rhs.accept(this)
   }
+
+  def visit(e : VarRef) {
+    res = res + 1
+  }
 }

@@ -5,9 +5,9 @@ import scala.collection.mutable.Map
 import scala.collection.mutable.Stack
 
 object ExecutionContext {
-  val fnDecls = Map[String, FunctionDeclaration]()
-  val global = Map[String, Expression]()
-  val heap = Stack[Map[String, Expression]]()
+  val fnDecls = Map[String, FunctionDeclaration]() // function declarations
+  val global = Map[String, Expression]()           // global vars
+  val heap = Stack[Map[String, Expression]]()      // local vars
 
   def initContext(): Unit = {
     fnDecls.clear()
@@ -19,6 +19,14 @@ object ExecutionContext {
     fnDecls += (f.name -> f) 
   }
 
+  def setVar(name: String, e: Expression) : Unit = {
+    if(currentContext() contains name) {
+      setLocal(name, e)
+    }
+    else {
+      setGlobal(name, e)
+    }
+  }
   def setGlobal(name: String, e: Expression): Unit = {
     global += (name -> e) 
   }
