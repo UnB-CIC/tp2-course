@@ -91,7 +91,7 @@ case class LtExp(val lhs: Expression, val rhs: Expression) extends Expression {
     if(l.computeType() == TInt() && r.computeType() == TInt()) {
       return new BoolValue(l.asInstanceOf[IntValue].value < r.asInstanceOf[IntValue].value)
     }
-    return new BoolValue(l.asInstanceOf[IntValue].value < r.asInstanceOf[IntValue].value)
+    throw new RuntimeException("cant compare " + lhs.computeType() + " with " + rhs.computeType())
   }
 
   def accept(v : Visitor) {
