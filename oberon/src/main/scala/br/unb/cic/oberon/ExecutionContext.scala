@@ -49,7 +49,7 @@ object ExecutionContext {
     else if (global contains name) {
       return global(name)
     }
-    return null
+    throw new RuntimeException("variable " + name + " not declared")
   }
 
   def lookupFunction(name: String): FunctionDeclaration  = {
