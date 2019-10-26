@@ -29,6 +29,30 @@ class ExpressionTest extends FunSuite {
     assert(int7 == sum.eval())
   }
 
+  test("Evaluating a LtExp(3, 4) should lead to an BoolValue(true)") {
+    val t = new IntValue(3)
+    val i = new IntValue(4)
+    val bool = new BoolValue(true)
+
+    val less = LtExp(t, i)
+
+    assert(t.typeCheck())
+    assert(i.typeCheck())
+    assert(less.eval() == bool)
+  }
+
+  test("Evaluating a LtExp(4, 3) should lead to an BoolValue(false)") {
+    val t = new IntValue(4)
+    val i = new IntValue(3)
+    val bool = new BoolValue(false)
+
+    val less = LtExp(t, i)
+
+    assert(t.typeCheck())
+    assert(i.typeCheck())
+    assert(less.eval() == bool)
+  }
+
   test("The Expression Add(true, 3) should be invalid") {
     val t = new BoolValue(true)
     val i = new IntValue(3)
@@ -51,6 +75,20 @@ class ExpressionTest extends FunSuite {
     assert(i.typeCheck())
     assert(and.computeType == TError())
     assert(!and.typeCheck())
+  }
+
+  test("The expression Lt(true, 3) should be invalid") {
+    val t = new BoolValue(true)
+    val i = new IntValue(3)
+
+    val less = LtExp(t, i)
+
+    assert(t.typeCheck())
+    assert(i.typeCheck())
+
+    assertThrows[java.lang.RuntimeException] {
+      less.eval()
+    }
   }
 }
 
