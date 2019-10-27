@@ -1,3 +1,5 @@
 /.metadata/
 /.recommenders/
 *.scala~
+/oberon/target
+/oberon/build
