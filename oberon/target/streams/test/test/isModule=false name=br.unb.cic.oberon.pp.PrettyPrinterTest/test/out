@@ -1,0 +1,4 @@
+[0m[[0m[0minfo[0m] [0m[0m[32mPrettyPrinterTest:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- pretty printing IntValue(10) should lead to "10"[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- pretty printing Add(10, 20) should lead to "(10 + 20)"[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- pretty printing Add(10, Add(10, 20)) should lead to "(10 + (10 + 20))"[0m[0m

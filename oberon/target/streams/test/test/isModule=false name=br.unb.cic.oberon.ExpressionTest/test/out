@@ -1,0 +1,11 @@
+[0m[[0m[0minfo[0m] [0m[0m[32mExpressionTest:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Evaluating an IntValue should lead to an IntValue[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Evaluating a BoolValue should lead to a BoolValue[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Evaluating a AddExp(3, 4) should lead to an IntValue(7)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Evaluating a LtExp(3, 4) should lead to an BoolValue(true)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Evaluating a LtExp(4, 3) should lead to an BoolValue(false)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Evaluating a GtExp(3, 4) should lead to a BoolValue(false)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Evaluating a GtExp(4, 3) should lead to a BoolValue(true)[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- The Expression Add(true, 3) should be invalid[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- The expression And(true, 3) should be invalid[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- The expression Lt(true, 3) should be invalid[0m[0m

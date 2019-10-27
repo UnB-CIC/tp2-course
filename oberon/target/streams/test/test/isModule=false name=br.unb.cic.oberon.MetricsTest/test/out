@@ -1,0 +1,3 @@
+[0m[[0m[0minfo[0m] [0m[0m[32mMetricsTest:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Metrics of an int value is allways 1[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Metrics of an Add(VI(5), Add(VI(3), V4(4))) is 5[0m[0m
