@@ -99,6 +99,26 @@ case class LtExp(val lhs: Expression, val rhs: Expression) extends Expression {
   }
 }
 
+case class GtExp(val lhs: Expression, val rhs: Expression) extends Expression {
+  override def typeCheck() : Boolean = lhs.computeType() == rhs.computeType()
+
+  override def computeType() : Type = if(typeCheck()) TBool() else TError()
+
+  override def eval(): Value = {
+    val l = lhs.eval()
+    val r = rhs.eval()
+
+    if(l.computeType() == TInt() && r.computeType() == TInt()) {
+      return new BoolValue(l.asInstanceOf[IntValue].value > r.asInstanceOf[IntValue].value)
+    }
+    throw new RuntimeException("cant compare " + lhs.computeType() + " with " + rhs.computeType())
+  }
+
+  def accept(v : Visitor) {
+    v.visit(this)
+  }
+}
+
 case class VarRef(val name: String) extends Expression {
   override def typeCheck() : Boolean = ExecutionContext.lookup(name).typeCheck()
   override def computeType() : Type = ExecutionContext.lookup(name).computeType()
