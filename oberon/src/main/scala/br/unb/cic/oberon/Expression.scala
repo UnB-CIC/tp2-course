@@ -99,7 +99,7 @@ case class LtExp(val lhs: Expression, val rhs: Expression) extends Expression {
   }
 }
 
-case class EqExp(val lhs: Expression, val rhs: Expression) extends Expression {
+case class NeqExp(val lhs: Expression, val rhs: Expression) extends Expression {
   override def typeCheck() : Boolean = lhs.computeType() == rhs.computeType()
 
   override def computeType() : Type = if(typeCheck()) TBool() else TError()
@@ -109,7 +109,7 @@ case class EqExp(val lhs: Expression, val rhs: Expression) extends Expression {
     val r = rhs.eval()
 
     if(l.computeType() == r.computeType()) {
-      return new BoolValue(l.asInstanceOf[IntValue].value == r.asInstanceOf[IntValue].value)
+      return new BoolValue(l.asInstanceOf[IntValue].value != r.asInstanceOf[IntValue].value)
     }
     throw new RuntimeException("cant compare " + lhs.computeType() + " with " + rhs.computeType())
   }

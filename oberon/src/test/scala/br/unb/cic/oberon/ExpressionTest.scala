@@ -53,28 +53,28 @@ class ExpressionTest extends FunSuite {
     assert(less.eval() == bool)
   }
 
-  test("Evaluating a EqExp(AddExp(2,2), 4) should lead to an BoolValue(true)") {
+  test("Evaluating a NeqExp(AddExp(2,2), 4) should lead to an BoolValue(false)") {
     val t = new IntValue(2)
     val i = new IntValue(4)
-    val bool = new BoolValue(true)
-
-    val equals = EqExp(AddExp(t,t), i)
-
-    assert(t.typeCheck())
-    assert(i.typeCheck())
-    assert(equals.eval() == bool)
-  }
-
-  test("Evaluating a EqExp(AddExp(2,2), 3) should lead to an BoolValue(false)") {
-    val t = new IntValue(2)
-    val i = new IntValue(3)
     val bool = new BoolValue(false)
 
-    val equals = EqExp(AddExp(t,t), i)
+    val notEquals = NeqExp(AddExp(t,t), i)
 
     assert(t.typeCheck())
     assert(i.typeCheck())
-    assert(equals.eval() == bool)
+    assert(notEquals.eval() == bool)
+  }
+
+  test("Evaluating a NeqExp(AddExp(2,2), 3) should lead to an BoolValue(true)") {
+    val t = new IntValue(2)
+    val i = new IntValue(3)
+    val bool = new BoolValue(true)
+
+    val notEquals = NeqExp(AddExp(t,t), i)
+
+    assert(t.typeCheck())
+    assert(i.typeCheck())
+    assert(notEquals.eval() == bool)
   }
 
   test("The Expression Add(true, 3) should be invalid") {

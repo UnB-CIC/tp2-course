@@ -41,10 +41,10 @@ class PrettyPrinter() extends Visitor {
     res = res +  ")"
   }
 
-  def visit(e : EqExp) {
+  def visit(e : NeqExp) {
     res = res + "("
     e.lhs.accept(this)
-    res = res + " == "
+    res = res + " != "
     e.rhs.accept(this)
     res = res +  ")"
   }

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de8cbb7d-9504-4f39-83b8-f06e9fc93de9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/br/unb/cic/oberon/Expression.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/br/unb/cic/oberon/Expression.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/br/unb/cic/oberon/Visitor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/br/unb/cic/oberon/Visitor.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/br/unb/cic/oberon/metrics/Metrics.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/br/unb/cic/oberon/metrics/Metrics.scala" afterDir="false" />
