@@ -1,7 +1,0 @@
-[0m[[0m[0minfo[0m] [0m[0m[32mExecutionContextTest:[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- initContext should make ExecutionContext empty[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- a declared function should be present in the execution context[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- notify invoke should increase the heap size[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- notify return should decrease the heap size[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- we should be able to add new variables to global using setGlobal[0m[0m
-[0m[[0m[0minfo[0m] [0m[0m[32m- we should be able to add new variables to locals using setLocal[0m[0m
