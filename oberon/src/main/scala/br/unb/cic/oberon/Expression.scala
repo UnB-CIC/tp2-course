@@ -7,10 +7,10 @@ case class TBool() extends Type
 case class TError() extends Type
 
 abstract class Expression {
-  def computeType() : Type
+  def computeType() : Type 
   def typeCheck() : Boolean
   def eval(): Value
-  def accept(v : Visitor) : Unit
+  def accept(v : Visitor) : Unit 
 }
 
 trait Value extends Expression {
@@ -29,7 +29,7 @@ case class IntValue(v: Integer) extends Value {
   override def computeType() : Type = TInt()
 
   def accept(v : Visitor) {
-    v.visit(this)
+    v.visit(this) 
   }
 }
 
@@ -40,7 +40,7 @@ case class BoolValue(v: Boolean) extends Value {
   override def computeType() : Type = TBool()
 
   def accept(v : Visitor) {
-    v.visit(this)
+    v.visit(this) 
   }
 
 }
@@ -59,7 +59,7 @@ case class AddExp(val lhs: Expression, val rhs: Expression) extends Expression {
 
   def accept(v : Visitor) {
     v.visit(this)
-  }
+  } 
 }
 
 case class AndExp(val lhs: Expression, val rhs: Expression) extends Expression {
@@ -128,3 +128,4 @@ case class VarRef(val name: String) extends Expression {
     v.visit(this)
   }
 }
+
