@@ -29,6 +29,16 @@ class ExpressionTest extends FunSuite {
     assert(int7 == sum.eval())
   }
 
+  test("Evaluating a SubExp(3, 4) should lead to an IntValue(-1)") {
+    val int3 = new IntValue(3)
+    val int4 = new IntValue(4)
+    val intN1 = new IntValue(-1)
+
+    val sub  = SubExp(int3, int4) 
+
+    assert(intN1 == sub.eval())
+  }
+
   test("Evaluating a LtExp(3, 4) should lead to an BoolValue(true)") {
     val t = new IntValue(3)
     val i = new IntValue(4)
@@ -87,6 +97,18 @@ class ExpressionTest extends FunSuite {
     assert(i.typeCheck())
     assert(sum.computeType == TError())
     assert(!sum.typeCheck())
+  }
+
+  test("The Expression Sub(true, 3) should be invalid") {
+    val t = new BoolValue(true)
+    val i = new IntValue(3)
+
+    val sub = SubExp(t, i)
+
+    assert(t.typeCheck())
+    assert(i.typeCheck())
+    assert(sub.computeType == TError())
+    assert(!sub.typeCheck())
   }
 
   test("The expression And(true, 3) should be invalid") {

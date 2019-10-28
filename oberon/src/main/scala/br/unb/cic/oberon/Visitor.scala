@@ -8,6 +8,7 @@ trait Visitor {
   def visit(v : IntValue) : Unit
   def visit(v : BoolValue) : Unit 
   def visit(e : AddExp) : Unit 
+  def visit(e : SubExp) : Unit 
   def visit(e : AndExp)  : Unit
   def visit(e : LtExp)  : Unit
   def visit(e : GtExp)  : Unit

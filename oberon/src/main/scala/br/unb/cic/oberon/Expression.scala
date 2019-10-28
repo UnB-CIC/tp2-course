@@ -62,6 +62,23 @@ case class AddExp(val lhs: Expression, val rhs: Expression) extends Expression {
   }
 }
 
+case class SubExp(val lhs: Expression, val rhs: Expression) extends Expression {
+  override def typeCheck() : Boolean = lhs.computeType() == TInt() && rhs.computeType() == TInt()
+
+  override def computeType() : Type = if(lhs.computeType == TInt() && rhs.computeType() == TInt()) TInt() else TError()
+
+  override def eval(): Value = {
+    val l = lhs.eval().asInstanceOf[IntValue]
+    val r = rhs.eval().asInstanceOf[IntValue]
+
+    return new IntValue(l.value - r.value)
+  }
+
+  def accept(v : Visitor) {
+    v.visit(this)
+  }
+}
+
 case class AndExp(val lhs: Expression, val rhs: Expression) extends Expression {
   override def typeCheck() : Boolean = lhs.computeType() == TBool() && rhs.computeType() == TBool()
 

@@ -25,6 +25,14 @@ class PrettyPrinter() extends Visitor {
     res = res +  ")"
   }
 
+  def visit(e : SubExp) {
+    res = res + "("
+    e.lhs.accept(this)
+    res = res + " - "
+    e.rhs.accept(this)
+    res = res +  ")"
+  }
+
   def visit(e : AndExp) {
     res = res + "("
     e.lhs.accept(this)
