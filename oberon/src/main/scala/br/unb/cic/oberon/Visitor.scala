@@ -11,5 +11,6 @@ trait Visitor {
   def visit(e : AndExp)  : Unit
   def visit(e : LtExp)  : Unit
   def visit(e : GtExp)  : Unit
+	def visit(e : EqExp)  : Unit
   def visit(e : VarRef) : Unit 
 }

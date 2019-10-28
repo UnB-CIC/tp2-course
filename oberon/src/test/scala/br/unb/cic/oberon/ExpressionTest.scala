@@ -77,6 +77,30 @@ class ExpressionTest extends FunSuite {
     assert(more.eval() == bool)
   }
 
+  test("Evaluating a EqExp(AddExp(2,2), 4) should lead to an BoolValue(true)") {
+    val t = new IntValue(2)
+    val i = new IntValue(4)
+    val bool = new BoolValue(true)
+
+    val equals = EqExp(AddExp(t,t), i)
+
+    assert(t.typeCheck())
+    assert(i.typeCheck())
+    assert(equals.eval() == bool)
+  }
+
+  test("Evaluating a EqExp(AddExp(2,2), 3) should lead to an BoolValue(false)") {
+    val t = new IntValue(2)
+    val i = new IntValue(3)
+    val bool = new BoolValue(false)
+
+    val equals = EqExp(AddExp(t,t), i)
+
+    assert(t.typeCheck())
+    assert(i.typeCheck())
+    assert(equals.eval() == bool)
+  }
+
   test("The Expression Add(true, 3) should be invalid") {
     val t = new BoolValue(true)
     val i = new IntValue(3)
