@@ -41,6 +41,12 @@ class Metrics() extends Visitor {
     e.rhs.accept(this)
   }
 
+  def visit(e : NeqExp) {
+    res = res + 1
+    e.lhs.accept(this)
+    e.rhs.accept(this)
+  }
+
   def visit(e : VarRef) {
     res = res + 1
   }
