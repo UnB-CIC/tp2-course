@@ -40,5 +40,26 @@ class PrettyPrinterTest extends FunSuite with BeforeAndAfter {
     assert("(10 + (10 + 20))" == pp.getValue())
   }
 
+  test("pretty printing Sub(10, 20) should lead to \"(10 - 20)\"") {
+    val int10 = new IntValue(10)
+    val int20 = new IntValue(20)
+
+    val sub = new SubExp(int10, int20)
+
+    sub.accept(pp)
+    assert("(10 - 20)" == pp.getValue())
+  }
+
+  test("pretty printing Sub(10, Sub(10, 20)) should lead to \"(10 - (10 - 20))\"") {
+    val int10 = new IntValue(10)
+    val int20 = new IntValue(20)
+
+    val sub1 = new SubExp(int10, int20)
+    val sub2 = new SubExp(int10, sub1) 
+
+    sub2.accept(pp)
+    assert("(10 - (10 - 20))" == pp.getValue())
+  }
+
 
 }
